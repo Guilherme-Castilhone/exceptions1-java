@@ -49,22 +49,13 @@ public class Program1 {
 			dataOut = LocalDate.parse(entrada.next()
 					, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-			LocalDate now = LocalDate.now();
+			String error = reservation.updateDates(dataIn, dataOut);
 
-			if (dataIn.isBefore(now) || dataOut.isBefore(now)) {
-				System.out.println("Error in reservation: Reservation dates must be future"
-						+ " dates.");
+			if (error != null) {
+				System.out.println(error);
 			}
-
-			else if(!dataOut.isAfter(dataIn)) {
-				System.out.println("Error in reservation: Check-out date must be later than check-in"
-						+ " date!");
-			}
-
+			
 			else {
-
-				reservation.updateDates(dataIn, dataOut);
-
 				System.out.println(reservation);
 			}
 		}
